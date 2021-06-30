@@ -2,19 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { Research } from '../research.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResearchService {
 
-  constructor(private http: HttpClient) {
-    this.getJSON().subscribe(data => {
-      console.log(data);
-    });
-  }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  public getJSON(): Observable<any> {
-    return this.http.get('./assets/researches.json');
+  public getResearchList(): Observable<Array<Research>> {
+    return this.http.get('./assets/researches.json') as Observable<Array<Research>>;
   }
 }
