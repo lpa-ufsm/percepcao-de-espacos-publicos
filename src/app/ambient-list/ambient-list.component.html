@@ -1,0 +1,19 @@
+<h2>Espaços Públicos</h2>
+
+<ul>
+  <li *ngFor="let ambient of ambients">
+
+    <div *ngIf="userIsLogged; else toUserForm">
+      <a href="{{ fillUrl(ambient.formUrl, ambient.id) }}" target="_blank">
+        <h2>{{ambient.title}}</h2>
+      </a>
+    </div>
+
+    <ng-template #toUserForm>
+      <a routerLink="/user-form" (click)="rememberAmbientClicked(ambient)">
+        <h2>{{ambient.title}}</h2>
+      </a>
+    </ng-template>
+
+  </li>
+</ul>
