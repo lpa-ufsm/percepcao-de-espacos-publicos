@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// import { AuthGuard } from './guards/auth.guard';
-import { AmbientListComponent } from './ambient-list/ambient-list.component';
-import { UserFormComponent } from './user-form/user-form.component';
+import { UserGuard } from './core/guards/user.guard';
+import { AmbientListComponent } from './ambient/ambient-list/ambient-list.component';
+import { UserFormComponent } from './user/user-form/user-form.component';
 
 const routes: Routes = [
   {
@@ -11,14 +11,14 @@ const routes: Routes = [
     component: AmbientListComponent
   },
   {
-    path: 'user-form',
+    path: 'user',
     component: UserFormComponent
   },
-  // {
-  //   path: 'ambient-form',
-  //   component: AmbientFormComponent,
-  //   canActivate: [AuthGuard]
-  // }
+  {
+    path: 'ambient/:id',
+    component: UserFormComponent,
+    canActivate: [UserGuard]
+  }
 ];
 
 @NgModule({

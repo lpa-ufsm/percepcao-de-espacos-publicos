@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Ambient } from '../ambient.interface';
-import { LoginService } from '../services/login.service';
-import { AmbientService } from '../services/ambient.service';
-import { User } from '../user.interface';
+import { Ambient } from '../../core/models/ambient.interface';
+import { AmbientService } from '../../core/services/ambient.service';
 
 @Component({
   selector: 'app-ambient-list',
@@ -14,26 +12,11 @@ export class AmbientListComponent implements OnInit {
 
   ambients: Array<Ambient> = [];
 
-  userIsLogged = false;
-
-  user: User = {
-    name: '',
-    age: '',
-    specialty: ''
-  };
-
   constructor(
     private ambientService: AmbientService,
-    private loginService: LoginService
   ) { }
 
   ngOnInit(): void {
-    this.userIsLogged = this.loginService.isLoggedin;
-
-    if (this.userIsLogged) {
-      this.user = this.loginService.user;
-    }
-
     this.ambientService.getAmbientList().subscribe(data => {
       this.ambients = this.shuffleArray(data);
     });
@@ -47,11 +30,4 @@ export class AmbientListComponent implements OnInit {
     return arr;
   }
 
-  fillUrl(url: string, ambientId: number): string {
-    return this.ambientService.fillUrl(url, ambientId);
-  }
-
-  rememberAmbientClicked(r: Ambient): void {
-    this.ambientService.ambientClicked = r;
-  }
 }

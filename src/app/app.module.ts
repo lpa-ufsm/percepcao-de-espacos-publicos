@@ -1,35 +1,26 @@
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AmbientListComponent } from './ambient-list/ambient-list.component';
-import { UserFormComponent } from './user-form/user-form.component';
+import { CoreModule } from './core/core.module';
+import { AmbientModule } from './ambient/ambient.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AmbientListComponent,
-    UserFormComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
+    BrowserModule,
     BrowserAnimationsModule,
-    MatInputModule,
-    MatSelectModule,
-    FormsModule
+    CoreModule,
+    AmbientModule,
+    UserModule
   ],
-  exports: [
-    MatInputModule,
-    MatSelectModule
-  ],
+  exports: [ ],
   providers: [],
   bootstrap: [AppComponent]
 })

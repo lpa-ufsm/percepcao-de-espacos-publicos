@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { Ambient } from '../ambient.interface';
-import { LoginService } from './login.service';
+
+import { UserService } from './user.service';
+import { Ambient } from '../models/ambient.interface';
+import { User } from '../models/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class AmbientService {
 
   constructor(
     private http: HttpClient,
-    private loginService: LoginService
+    private userService: UserService
   ) { }
 
   public getAmbientList(): Observable<Array<Ambient>> {
@@ -27,10 +29,12 @@ export class AmbientService {
   }
 
   public fillUrl(url: string, ambientId: number): string {
+    const user: User = this.userService.getUser();
+
     const preFilledFields: any = {
-      nameInput: this.loginService.user.name,
-      ageInput: this.loginService.user.age,
-      specialtyInput: this.loginService.user.specialty ?? '',
+      nameInput: user.name,
+      ageInput: user.age,
+      specialtyInput: user.specialty ?? '',
       ambientId: ambientId.toString()
     };
     return url.replace(/nameInput|ageInput|specialtyInput|ambientId/g, match => preFilledFields[match]);
