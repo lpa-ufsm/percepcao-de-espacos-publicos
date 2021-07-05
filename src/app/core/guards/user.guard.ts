@@ -22,7 +22,7 @@ export class UserGuard implements CanActivate {
       if (this.userService.isLoggedin()) {
         return true;
       }
-      this.router.navigateByUrl('/user');
+      this.router.navigateByUrl(`/user?ambient=${route.params.id}`);
       return false;
   }
 }

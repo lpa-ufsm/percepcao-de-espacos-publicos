@@ -12,10 +12,17 @@ import { User } from '../models/user.interface';
 })
 export class AmbientService {
 
+  private ambients: Ambient[];
+
   constructor(
     private http: HttpClient,
     private userService: UserService
   ) { }
+
+  getAmbient(id?: number): Ambient {
+    this.getAmbientList().subscribe(ambients => this.ambients = ambients);
+    return this.ambients?.find(ambient => ambient.id === id);
+  }
 
   getAmbientList(): Observable<Ambient[]> {
     return this.http.get('./assets/ambients.json') as Observable<Ambient[]>;
