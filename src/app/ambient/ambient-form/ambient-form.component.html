@@ -1,0 +1,9 @@
+<h2>Avaliação de Ambiente</h2>
+
+<iframe [src]="ambient.iFrameUrl | safe" width="1280" height="720"></iframe>
+
+<button *ngIf="!showForm" (click)="showForm = true">Mostrar formulário</button>
+
+<iframe *ngIf="showForm" [src]="ambient.formUrl | safe" width="1280" height="720"></iframe>
+
+<a routerLink="">Avaliar outro ambiente</a>

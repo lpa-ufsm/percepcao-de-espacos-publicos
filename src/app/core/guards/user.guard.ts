@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+
 import { Observable } from 'rxjs';
+
 import { UserService } from '../services/user.service';
 
 @Injectable({
@@ -20,7 +22,7 @@ export class UserGuard implements CanActivate {
       if (this.userService.isLoggedin()) {
         return true;
       }
-      this.router.navigateByUrl('/user');
+      this.router.navigateByUrl(`/user?ambient=${route.params.id}`);
       return false;
   }
 }

@@ -12,31 +12,30 @@ import { User } from '../models/user.interface';
 })
 export class AmbientService {
 
-  ambientClicked: Ambient = {
-    title: '',
-    id: 0,
-    iFrameUrl: '',
-    formUrl: ''
-  };
+  private ambients: Ambient[];
 
   constructor(
     private http: HttpClient,
     private userService: UserService
   ) { }
 
-  public getAmbientList(): Observable<Array<Ambient>> {
-    return this.http.get('./assets/ambients.json') as Observable<Array<Ambient>>;
+  getAmbient(id?: number): Ambient {
+    this.getAmbientList().subscribe(ambients => this.ambients = ambients);
+    return this.ambients?.find(ambient => ambient.id === id);
   }
 
-  public fillUrl(url: string, ambientId: number): string {
+  getAmbientList(): Observable<Ambient[]> {
+    return this.http.get('./assets/ambients.json') as Observable<Ambient[]>;
+  }
+
+  fillUrl(url: string): string {
     const user: User = this.userService.getUser();
 
     const preFilledFields: any = {
       nameInput: user.name,
       ageInput: user.age,
-      specialtyInput: user.specialty ?? '',
-      ambientId: ambientId.toString()
+      specialtyInput: user.specialty ?? ''
     };
-    return url.replace(/nameInput|ageInput|specialtyInput|ambientId/g, match => preFilledFields[match]);
+    return url.replace(/nameInput|ageInput|specialtyInput/g, match => preFilledFields[match]);
   }
 }
