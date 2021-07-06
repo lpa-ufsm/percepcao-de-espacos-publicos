@@ -1,23 +1,26 @@
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ResearchListComponent } from './research-list/research-list.component';
+import { CoreModule } from './core/core.module';
+import { AmbientModule } from './ambient/ambient.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ResearchListComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    CoreModule,
+    AmbientModule,
+    UserModule
   ],
+  exports: [ ],
   providers: [],
   bootstrap: [AppComponent]
 })
