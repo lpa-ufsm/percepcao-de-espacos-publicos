@@ -1,9 +1,18 @@
-<h2>Avaliação de Ambiente</h2>
+<div class="content" fxLayout="column">
 
-<iframe [src]="ambient.iFrameUrl | safe" width="1280" height="720"></iframe>
+  <div class="header" fxFlex>
+    <h1>Avaliação de Ambiente</h1>
+  </div>
 
-<button *ngIf="!showForm" (click)="showForm = true">Mostrar formulário</button>
+  <div class="iFrameContent" fxLayout="column">
+    <iframe class="iFrameImg" [src]="ambient.iFrameUrl | safe" width="1280" height="720"></iframe>
+    <button class="showFormBtn" mat-raised-button *ngIf="!showingForm" (click)="showForm()">Avaliar</button>
+  </div>
 
-<iframe *ngIf="showForm" [src]="ambient.formUrl | safe" width="1280" height="720"></iframe>
+  <iframe class="iFrameForm" [hidden]="!showingForm" [src]="ambient.formUrl | safe" width="1280" height="830"></iframe>
 
-<a routerLink="">Avaliar outro ambiente</a>
+  <button class="backBtn" mat-stroked-button>
+    <a routerLink="">Voltar</a>
+  </button>
+
+</div>

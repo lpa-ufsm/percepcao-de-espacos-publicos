@@ -11,19 +11,23 @@ import { AmbientService } from 'src/app/core/services/ambient.service';
 })
 export class AmbientFormComponent implements OnInit {
 
-  showForm = false;
+  showingForm = false;
 
   ambient: Ambient;
 
   constructor(
     private ambientService: AmbientService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.params.id);
-    this.ambient = this.ambientService.getAmbient(id);
+    this.ambientService.getAmbient(id).subscribe(ambient => this.ambient = ambient);
+  }
+
+  showForm(): void {
     this.ambient.formUrl = this.ambientService.fillUrl(this.ambient.formUrl);
+    this.showingForm = true;
   }
 
 }

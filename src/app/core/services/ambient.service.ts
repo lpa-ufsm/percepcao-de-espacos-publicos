@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { UserService } from './user.service';
 import { Ambient } from '../models/ambient.interface';
@@ -19,9 +20,8 @@ export class AmbientService {
     private userService: UserService
   ) { }
 
-  getAmbient(id?: number): Ambient {
-    this.getAmbientList().subscribe(ambients => this.ambients = ambients);
-    return this.ambients?.find(ambient => ambient.id === id);
+  getAmbient(id: number): Observable<Ambient> {
+    return this.getAmbientList().pipe(map(ambients => ambients.find(ambient => ambient.id === id)));
   }
 
   getAmbientList(): Observable<Ambient[]> {

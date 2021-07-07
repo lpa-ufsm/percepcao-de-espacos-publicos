@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AmbientService } from 'src/app/core/services/ambient.service';
 import { User } from '../../core/models/user.interface';
 import { UserService } from '../../core/services/user.service';
 
@@ -17,13 +16,11 @@ export class UserFormComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private ambientService: AmbientService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.ambientService.getAmbient();
   }
 
   submit(): void {
