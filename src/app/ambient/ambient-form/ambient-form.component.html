@@ -5,11 +5,11 @@
   </div>
 
   <div class="iFrameContent" fxLayout="column">
-    <iframe class="iFrameImg" [src]="ambient.iFrameUrl | safe" width="1280" height="720"></iframe>
+    <iframe class="iFrameImg" [src]="ambient?.iFrameUrl | safe" width="1280" height="720"></iframe>
     <button class="showFormBtn" mat-raised-button *ngIf="!showingForm" (click)="showForm()">Avaliar</button>
   </div>
 
-  <iframe class="iFrameForm" [hidden]="!showingForm" [src]="ambient.formUrl | safe" width="1280" height="830"></iframe>
+  <iframe class="iFrameForm" id="form" [hidden]="!showingForm" [src]="ambient?.formUrl | safe" width="1280" height="830"></iframe>
 
   <button class="backBtn" mat-stroked-button>
     <a routerLink="">Voltar</a>
