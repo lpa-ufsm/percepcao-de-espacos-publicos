@@ -10,7 +10,7 @@ import { AmbientService } from '../../core/services/ambient.service';
 })
 export class AmbientListComponent implements OnInit {
 
-  ambients: Array<Ambient> = [];
+  ambients: Ambient[] = [];
 
   constructor(
     private ambientService: AmbientService,
@@ -22,7 +22,7 @@ export class AmbientListComponent implements OnInit {
     });
   }
 
-  shuffleArray(arr: Array<Ambient>): Array<Ambient> {
+  shuffleArray(arr: Ambient[]): Ambient[] {
     for (let i: number = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
