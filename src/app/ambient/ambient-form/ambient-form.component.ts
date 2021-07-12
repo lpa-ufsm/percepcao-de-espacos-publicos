@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ActivatedRoute } from '@angular/router';
 
 import { take } from 'rxjs/operators';
 
 import { Ambient } from 'src/app/core/models/ambient.interface';
 import { AmbientService } from 'src/app/core/services/ambient.service';
+import { FormSheetComponent } from 'src/app/form/form-sheet/form-sheet.component';
 
 @Component({
   selector: 'app-ambient-form',
@@ -20,6 +22,7 @@ export class AmbientFormComponent implements OnInit {
   constructor(
     private ambientService: AmbientService,
     private route: ActivatedRoute,
+    private bottomSheet: MatBottomSheet
   ) { }
 
   ngOnInit(): void {
@@ -27,11 +30,8 @@ export class AmbientFormComponent implements OnInit {
     this.ambientService.getAmbient(id).pipe(take(1)).subscribe(ambient => this.ambient = ambient);
   }
 
-  showForm(): void {
-    this.ambient.formUrl = this.ambientService.fillUrl(this.ambient.formUrl);
-    this.showingForm = true;
-
-    setTimeout(() => document.getElementById('form').scrollIntoView({ behavior: 'smooth' }), 100);
+  openForm(): void {
+    this.bottomSheet.open(FormSheetComponent, { data: this.ambient });
   }
 
 }
