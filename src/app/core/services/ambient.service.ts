@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { UserService } from './user.service';
 import { Ambient } from '../models/ambient.interface';
@@ -12,10 +13,16 @@ import { User } from '../models/user.interface';
 })
 export class AmbientService {
 
+  private ambients: Ambient[];
+
   constructor(
     private http: HttpClient,
     private userService: UserService
   ) { }
+
+  getAmbient(id: number): Observable<Ambient> {
+    return this.getAmbientList().pipe(map(ambients => ambients.find(ambient => ambient.id === id)));
+  }
 
   getAmbientList(): Observable<Ambient[]> {
     return this.http.get('./assets/ambients.json') as Observable<Ambient[]>;

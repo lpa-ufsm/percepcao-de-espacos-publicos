@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from '../../core/models/user.interface';
 import { UserService } from '../../core/services/user.service';
@@ -16,7 +16,8 @@ export class UserFormComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private route: Router,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +26,7 @@ export class UserFormComponent implements OnInit {
   submit(): void {
     this.userService.save(this.user);
 
-    this.route.navigate(['ambient', 1]);
+    const id = this.route.snapshot.queryParamMap.get('ambient');
+    this.router.navigate(['ambient', id]);
   }
 }

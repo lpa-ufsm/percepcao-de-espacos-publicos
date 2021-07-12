@@ -1,0 +1,45 @@
+.content {
+  align-items: center;
+
+  .header {
+    margin-left: 20px;
+    align-self: flex-start;
+  }
+
+  .backBtn {
+    margin-top: 10px;
+
+    a {
+      text-decoration: none;
+      color: #444;
+    }
+  }
+
+  .iFrameContent {
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; // 16:9 aspect ratio
+
+    .iFrameImg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .showFormBtn {
+      bottom: 3vw;
+    }
+  }
+
+  .iFrameForm {
+    width: 100%;
+  }
+}
+

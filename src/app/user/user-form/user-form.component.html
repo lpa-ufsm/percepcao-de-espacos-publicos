@@ -1,24 +1,38 @@
-<h2>Pesquisa de Diferencial Semântico</h2>
-<p>Preencha os campos abaixo para avaliar os ambientes</p>
+<div class="content" fxLayout="column">
 
-<form #form="ngForm" (ngSubmit)="submit()">
+  <div class="header" fxFlex>
+    <p>Olá</p>
+    <p>Gostaríamos de convidá-lo(a) para avaliar alguns espaços públicos e nos contar suas impressões.</p>
+    <p>Em cada página, você encontrará um questionário abaixo de um ambiente.</p>
+    <p>Você pode navegar à vontade no ambiente.
+      Quando sentir que já viu o suficiente e que pode avaliá-lo, clique em "Avaliar" para começar a responder o questionário.
+      Caso sinta a necessidade, pode voltar a passear pelo ambiente.</p>
+    <p>Ao terminar de avaliar o ambiente, você pode parar ou avaliar outro ambiente através dos botões abaixo das imagens.</p>
+    <p>No momento, temos 3 ambientes diferentes e você é convidado a passear por todos eles, embora você possa parar a qualquer momento.</p>
+    <p>Desde já, obrigado.</p>
+    <p>Preencha os campos abaixo para avaliar os ambientes</p>
+  </div>
 
-  <mat-form-field>
-    <mat-label>Nome</mat-label>
-    <input matInput type="text" name="name" [(ngModel)]="user.name" required>
-  </mat-form-field>
+    <form fxFlex fxLayout="column" fxLayoutGap="20px" #form="ngForm" (ngSubmit)="submit()">
 
-  <mat-form-field>
-    <mat-label>Idade</mat-label>
-    <input matInput type="number" name="age" [(ngModel)]="user.age" required>
-  </mat-form-field>
+      <mat-form-field fxFlex>
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" name="name" [(ngModel)]="user.name" required>
+      </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Especialidade</mat-label>
-    <input matInput type="text" name="specialty" [(ngModel)]="user.specialty">
-    <mat-hint>Campo de Trabalho/Estudo</mat-hint>
-  </mat-form-field>
+      <mat-form-field fxFlex>
+        <mat-label>Idade</mat-label>
+        <input matInput type="number" name="age" [(ngModel)]="user.age" required>
+      </mat-form-field>
 
-  <button mat-button type="submit" [disabled]="!form.valid">Enviar</button>
+      <mat-form-field fxFlex>
+        <mat-label>Especialidade</mat-label>
+        <input matInput type="text" name="specialty" [(ngModel)]="user.specialty">
+        <mat-hint>Campo de Trabalho/Estudo</mat-hint>
+      </mat-form-field>
 
-</form>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Enviar</button>
+
+    </form>
+
+</div>
