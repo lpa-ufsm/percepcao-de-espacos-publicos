@@ -15,8 +15,6 @@ import { FormSheetComponent } from 'src/app/form/form-sheet/form-sheet.component
 })
 export class AmbientFormComponent implements OnInit {
 
-  showingForm = false;
-
   ambient: Ambient;
 
   constructor(
