@@ -1,0 +1,13 @@
+.content {
+  align-items: center;
+
+  .header {
+    margin-left: 20px;
+    align-self: flex-start;
+  }
+}
+
+form {
+  width: calc(100% - 40px);
+  align-items: flex-start;
+}
