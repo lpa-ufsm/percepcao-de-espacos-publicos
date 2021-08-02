@@ -13,16 +13,16 @@ export class UserGuard implements CanActivate {
   constructor(
     private userService: UserService,
     private router: Router
-    ) { }
+  ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      if (this.userService.isLoggedin()) {
-        return true;
-      }
-      this.router.navigateByUrl(`/user?ambient=${route.params.id}`);
-      return false;
+    if (this.userService.isLoggedin()) {
+      return true;
+    }
+    this.router.navigateByUrl(`/user?ambient=${route.params.id}`);
+    return false;
   }
 }

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AmbientModule } from './ambient/ambient.module';
 import { UserModule } from './user/user.module';
+import { FormModule } from './form/form.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UserModule } from './user/user.module';
     BrowserAnimationsModule,
     CoreModule,
     AmbientModule,
-    UserModule
+    UserModule,
+    FormModule
   ],
   exports: [ ],
   providers: [],
