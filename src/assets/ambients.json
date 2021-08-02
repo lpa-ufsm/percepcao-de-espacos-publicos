@@ -3,18 +3,18 @@
     "id": 1,
     "title": "Ambiente 1",
     "iFrameUrl": "https://roundme.com/embed/640230/2026842",
-    "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfnrkpU9TGkBDX5owBdJZUfoNYBWlGRHAFGEUnW3_Z4gnX2WA/viewform?usp=pp_url&entry.1548645742=nameInput&entry.1572154704=ageInput&entry.621391787=specialtyInput&embedded=true"
+    "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLScXDoHYyAbAN64Dkh1MeDx_e3i4sSV0Baw_ekD2PbyXcIq6Mw/viewform?usp=pp_url&entry.340012939=name&entry.216388517=age&entry.1636296244=specialty"
   },
   {
     "id": 2,
     "title": "Ambiente 2",
     "iFrameUrl": "https://roundme.com/embed/640230/2026842",
-    "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfnrkpU9TGkBDX5owBdJZUfoNYBWlGRHAFGEUnW3_Z4gnX2WA/viewform?usp=pp_url&entry.1548645742=nameInput&entry.1572154704=ageInput&entry.621391787=specialtyInput&embedded=true"
+    "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLScXDoHYyAbAN64Dkh1MeDx_e3i4sSV0Baw_ekD2PbyXcIq6Mw/viewform?usp=pp_url&entry.340012939=name&entry.216388517=age&entry.1636296244=specialty"
   },
   {
     "id": 3,
     "title": "Ambiente 3",
     "iFrameUrl": "https://roundme.com/embed/640230/2026842",
-    "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfnrkpU9TGkBDX5owBdJZUfoNYBWlGRHAFGEUnW3_Z4gnX2WA/viewform?usp=pp_url&entry.1548645742=nameInput&entry.1572154704=ageInput&entry.621391787=specialtyInput&embedded=true"
+    "formUrl": "https://docs.google.com/forms/d/e/1FAIpQLScXDoHYyAbAN64Dkh1MeDx_e3i4sSV0Baw_ekD2PbyXcIq6Mw/viewform?usp=pp_url&entry.340012939=name&entry.216388517=age&entry.1636296244=specialty"
   }
 ]

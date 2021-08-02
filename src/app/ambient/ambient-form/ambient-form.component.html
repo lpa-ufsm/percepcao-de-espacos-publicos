@@ -1,10 +1,22 @@
 <header>
-  <button routerLink="">Voltar</button>
-  <h1 fxFlex>Avaliação de Ambiente</h1>
+  <button mat-icon-button routerLink="">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <h1 fxFlex>Avaliação de Ambiente {{ambient?.id}}</h1>
 </header>
 
-<iframe class="ambient-content" [src]="ambient?.iFrameUrl | safe"></iframe>
+<iframe class="ambient-content" [src]="ambient?.iFrameUrl | safe" frameBorder="0"></iframe>
 
-<footer>
-  <button mat-raised-button (click)="openForm()">RESPONDER</button>
+<footer fxLayout="row" fxLayoutGap="8px">
+  <span fxFlex></span>
+
+  <button mat-raised-button color="accent" (click)="openForm()">
+    <mat-icon>fact_check</mat-icon>
+    RESPONDER
+  </button>
+
+  <button mat-raised-button (click)="next()">
+    <mat-icon>arrow_forward</mat-icon>
+    AVALIAR OUTRO
+  </button>
 </footer>

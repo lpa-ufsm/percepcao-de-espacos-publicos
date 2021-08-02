@@ -1,24 +1,20 @@
 <app-header></app-header>
-<div class="content" fxLayout="column">
+<section>
 
-  <div class="header" fxFlex>
-    <p>Escolha o ambiente que deseja avaliar</p>
-  </div>
+  <h2>Escolha o ambiente que deseja avaliar</h2>
 
-  <ul fxLayoutGap="20px" fxLayout="column">
-    <li *ngFor="let ambient of ambients">
-      <mat-card>
+
+  <div fxLayoutGap="20px" fxLayout="column">
+      <mat-card *ngFor="let ambient of ambients" class="mat-elevation-z8">
 
         <mat-card-title>{{ambient.title}}</mat-card-title>
 
         <mat-card-actions>
-          <button mat-button>
-            <a [routerLink]="['/ambient/', ambient.id]">AVALIAR</a>
-          </button>
+            <a mat-raised-button color="accent" [routerLink]="['/ambient/', ambient.id]">AVALIAR</a>
         </mat-card-actions>
 
       </mat-card>
-    </li>
-  </ul>
 
-</div>
+  </div>
+
+</section>

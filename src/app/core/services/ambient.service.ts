@@ -32,10 +32,18 @@ export class AmbientService {
     const user: User = this.userService.getUser();
 
     const preFilledFields: any = {
-      nameInput: user.name,
-      ageInput: user.age,
-      specialtyInput: user.specialty ?? ''
+      name: user.name,
+      age: user.age,
+      specialty: user.specialty ?? ''
     };
-    return url.replace(/nameInput|ageInput|specialtyInput/g, match => preFilledFields[match]);
+    return url.replace(/name|age|specialty/g, match => preFilledFields[match]);
+  }
+
+  shuffle(arr: Ambient[]): Ambient[] {
+    for (let i: number = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
   }
 }

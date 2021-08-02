@@ -18,16 +18,8 @@ export class AmbientListComponent implements OnInit {
 
   ngOnInit(): void {
     this.ambientService.getAmbientList().subscribe(data => {
-      this.ambients = this.shuffleArray(data);
+      this.ambients = this.ambientService.shuffle(data);
     });
-  }
-
-  shuffleArray(arr: Ambient[]): Ambient[] {
-    for (let i: number = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
   }
 
 }

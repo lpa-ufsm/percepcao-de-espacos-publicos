@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { SafePipe } from './pipes/safe.pipe';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    MatIconModule,
     MatCardModule,
     FlexLayoutModule,
     FormsModule,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { take } from 'rxjs/operators';
 
@@ -20,6 +20,7 @@ export class AmbientFormComponent implements OnInit {
   constructor(
     private ambientService: AmbientService,
     private route: ActivatedRoute,
+    private router: Router,
     private bottomSheet: MatBottomSheet
   ) { }
 
@@ -30,6 +31,24 @@ export class AmbientFormComponent implements OnInit {
 
   openForm(): void {
     this.bottomSheet.open(FormSheetComponent, { data: this.ambient });
+  }
+
+  next(): void {
+    this.ambientService.getAmbientList()
+    .pipe(take(1))
+    .subscribe(data => {
+
+      const ambients = this.ambientService.shuffle(data);
+
+      const ambient = ambients[0];
+
+      if (ambient.id === this.ambient.id) {
+        this.next();
+        return;
+      }
+
+      this.ambient = ambient;
+    });
   }
 
 }
