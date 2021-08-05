@@ -29,7 +29,7 @@ jobs:
         uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.3.2
         with:
           # Github access token token used to deploy on gh_pages. You can find it on Github.
-          #github_access_token: 
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
           # The directory of the angular project, in which all the commands will run
           angular_project_dir: ./
           # Build configuration for the angular app
