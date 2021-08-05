@@ -42,7 +42,7 @@ jobs:
       - name: npm install and npm run build
         run: |
           npm i
-          ng build --prod
+          npm run ng build --prod
           ls ./dist
 
       - name: Angular Deploy gh-pages Actions
