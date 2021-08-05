@@ -17,33 +17,11 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-            
-      - name: Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-          
-      - name: npm install and npm run build
-        run: |
-          npm i
-          npm run ng build --prod
-          ls ./dist
 
       - name: Angular Deploy gh-pages Actions
         # You may pin to the exact commit or the version.
@@ -61,7 +39,7 @@ jobs:
           # branch on which the angular build will be deployed
           deploy_branch: gh-pages
           # The folder in which `ng build` provides its output. This is the folder which will be deployed to the `deploy_branch`.
-          angular_dist_build_folder: dist
+          angular_dist_build_folder: dist/percepcao-de-espacos-publicos/
           # If the action should run 'ng lint'
           run_lint: true
           # Will not fail the step if anything fails
