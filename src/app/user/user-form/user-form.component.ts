@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
+import { AmbientService } from 'src/app/core/services/ambient.service';
 import { User } from '../../core/models/user.interface';
 import { UserService } from '../../core/services/user.service';
 
@@ -13,14 +15,19 @@ import { UserService } from '../../core/services/user.service';
 export class UserFormComponent implements OnInit {
 
   user: User = {} as User;
+  ambientQuantity: number;
 
   constructor(
     private userService: UserService,
+    private ambientService: AmbientService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.ambientService.getAmbientList().pipe(take(1)).subscribe(data => {
+      this.ambientQuantity = data.length;
+    });
   }
 
   submit(): void {
