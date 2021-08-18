@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -13,12 +12,29 @@ import { User } from '../models/user.interface';
 })
 export class AmbientService {
 
-  private ambients: Ambient[];
+  private viewedAmbients: Ambient['id'][] = [];
 
   constructor(
     private http: HttpClient,
     private userService: UserService
   ) { }
+
+  ambientIsNew(id: number): boolean {
+    if (this.viewedAmbients.includes(id)) {
+      return false;
+    }
+    return true;
+  }
+
+  updateViewedAmbients(id: number): void {
+    this.viewedAmbients.push(id);
+  }
+
+  allAmbientsViewed(): Observable<boolean> {
+    return this.getAmbientList().pipe(map(ambients => {
+      return ambients.every(ambient => this.viewedAmbients.includes(ambient.id));
+    }));
+  }
 
   getAmbient(id: number): Observable<Ambient> {
     return this.getAmbientList().pipe(map(ambients => ambients.find(ambient => ambient.id === id)));
