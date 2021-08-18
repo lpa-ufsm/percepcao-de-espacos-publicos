@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { ActivatedRoute, Router } from '@angular/router';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 
 import { Ambient } from 'src/app/core/models/ambient.interface';
 import { AmbientService } from 'src/app/core/services/ambient.service';
 import { FormSheetComponent } from 'src/app/form/form-sheet/form-sheet.component';
+import { FinishDialogComponent } from '../finish-dialog/finish-dialog.component';
 
 @Component({
   selector: 'app-ambient-form',
@@ -20,13 +21,16 @@ export class AmbientFormComponent implements OnInit {
   constructor(
     private ambientService: AmbientService,
     private route: ActivatedRoute,
-    private router: Router,
-    private bottomSheet: MatBottomSheet
+    private bottomSheet: MatBottomSheet,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.params.id);
-    this.ambientService.getAmbient(id).pipe(take(1)).subscribe(ambient => this.ambient = ambient);
+    this.ambientService.getAmbient(id).pipe(take(1)).subscribe(ambient => {
+      this.ambient = ambient;
+      this.ambientService.updateViewedAmbients(ambient.id);
+    });
   }
 
   openForm(): void {
@@ -34,6 +38,20 @@ export class AmbientFormComponent implements OnInit {
   }
 
   next(): void {
+    this.ambientService.allAmbientsViewed().subscribe(viewed => {
+      if (viewed) {
+        this.showFinishDialog();
+      } else {
+        this.showNextAmbient();
+      }
+    });
+  }
+
+  private showFinishDialog(): void {
+    this.dialog.open(FinishDialogComponent);
+  }
+
+  private showNextAmbient(): void {
     this.ambientService.getAmbientList()
     .pipe(take(1))
     .subscribe(data => {
@@ -42,12 +60,13 @@ export class AmbientFormComponent implements OnInit {
 
       const ambient = ambients[0];
 
-      if (ambient.id === this.ambient.id) {
+      if (!this.ambientService.ambientIsNew(ambient.id)) {
         this.next();
         return;
       }
 
       this.ambient = ambient;
+      this.ambientService.updateViewedAmbients(ambient.id);
     });
   }
 

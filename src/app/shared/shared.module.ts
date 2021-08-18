@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     SafePipe,
     MatBottomSheetModule,
-    HeaderComponent
+    HeaderComponent,
+    MatDialogModule
   ]
 })
 export class SharedModule { }
