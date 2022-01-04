@@ -39,7 +39,7 @@ export class AmbientFormComponent implements OnInit {
           this.images = this.ambient.images.map(img => 'assets/ambients/' + ambient.id + '/' + img);
         }
       });
-    })
+    });
   }
 
   openForm(): void {

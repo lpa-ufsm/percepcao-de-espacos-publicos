@@ -18,12 +18,12 @@ export class GalleryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  previous() {
+  previous(): void {
     this.active -= 1;
     this.loading = false;
   }
 
-  next() {
+  next(): void {
     this.active += 1;
     this.loading = false;
   }
