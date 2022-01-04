@@ -1,0 +1,65 @@
+.mat-progress-bar {
+  position: absolute;
+}
+
+/* Main Wrapper Container */
+.container-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: black;
+}
+
+/* Slider Container which contains images */
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Default Image Properties */
+.slides img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: left 1s, right 1s;
+  left: 100%;
+}
+
+/* Active Image or Current image to display */
+.slides > img.active {
+  left: 0;
+}
+
+/* Image Slider Next And Previous Buttons */
+.btn-slide {
+  position: absolute;
+
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+
+  z-index: 10;
+}
+
+/* Show Buttons when user hover on the slider Container */
+.container-slider:hover > .btn-slide {
+  opacity: 1;
+}
+
+/* Previous and Next Button Position Absolute */
+.prev,
+.next {
+  top: 50%;
+  transform: translateY(-60%);
+}
+
+.prev {
+  left: 20px;
+}
+.next {
+  right: 20px;
+}
+

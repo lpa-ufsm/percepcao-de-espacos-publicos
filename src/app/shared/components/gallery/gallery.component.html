@@ -1,0 +1,20 @@
+<div class="container-slider">
+
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+  <!-- Slider Container with images  -->
+  <div class="slides">
+    <img *ngFor="let image of images; index as i" [src]="image | safe" [class.active]="active === i" />
+  </div>
+
+  <!--  Previous Button  -->
+  <button mat-mini-fab class="btn-slide prev" (click)="previous()" [disabled]="active === 0">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <!--  Next Button  -->
+  <button mat-mini-fab class="btn-slide next" (click)="next()" [disabled]="active === images?.length - 1">
+    <mat-icon>arrow_forward</mat-icon>
+  </button>
+
+</div>

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-
 import { Ambient } from 'src/app/core/models/ambient.interface';
 import { AmbientService } from 'src/app/core/services/ambient.service';
 import { FormSheetComponent } from 'src/app/form/form-sheet/form-sheet.component';
@@ -18,19 +17,29 @@ export class AmbientFormComponent implements OnInit {
 
   ambient: Ambient;
 
+  images: string[];
+
   constructor(
     private ambientService: AmbientService,
     private route: ActivatedRoute,
+    private router: Router,
     private bottomSheet: MatBottomSheet,
     private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.params.id);
-    this.ambientService.getAmbient(id).pipe(take(1)).subscribe(ambient => {
-      this.ambient = ambient;
-      this.ambientService.updateViewedAmbients(ambient.id);
-    });
+    this.route.params.subscribe(params => {
+
+      const id = Number(params.id);
+      this.ambientService.getAmbient(id).pipe(take(1)).subscribe(ambient => {
+        this.ambient = ambient;
+        this.ambientService.updateViewedAmbients(ambient.id);
+
+        if (this.ambient.images) {
+          this.images = this.ambient.images.map(img => 'assets/ambients/' + ambient.id + '/' + img);
+        }
+      });
+    })
   }
 
   openForm(): void {
@@ -53,21 +62,20 @@ export class AmbientFormComponent implements OnInit {
 
   private showNextAmbient(): void {
     this.ambientService.getAmbientList()
-    .pipe(take(1))
-    .subscribe(data => {
+      .pipe(take(1))
+      .subscribe(data => {
 
-      const ambients = this.ambientService.shuffle(data);
+        const ambients = this.ambientService.shuffle(data);
 
-      const ambient = ambients[0];
+        const ambient = ambients[0];
 
-      if (!this.ambientService.ambientIsNew(ambient.id)) {
-        this.next();
-        return;
-      }
+        if (!this.ambientService.ambientIsNew(ambient.id)) {
+          this.next();
+          return;
+        }
 
-      this.ambient = ambient;
-      this.ambientService.updateViewedAmbients(ambient.id);
-    });
+        this.router.navigate(['/ambient', ambient.id]);
+      });
   }
 
 }

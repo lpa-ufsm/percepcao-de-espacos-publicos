@@ -1,11 +1,17 @@
+<ng-container *ngIf="ambient?.iFrameUrl else imageBlock">
+  <iframe class="ambient-content" [src]="ambient?.iFrameUrl | safe" frameBorder="0"></iframe>
+</ng-container>
+
+<ng-template #imageBlock>
+  <app-gallery [images]="images"></app-gallery>
+</ng-template>
+
 <header>
   <button mat-icon-button routerLink="">
     <mat-icon>arrow_back</mat-icon>
   </button>
   <h1 fxFlex>Avaliação de Ambiente {{ambient?.id}}</h1>
 </header>
-
-<iframe class="ambient-content" [src]="ambient?.iFrameUrl | safe" frameBorder="0"></iframe>
 
 <footer fxLayout="row" fxLayoutGap="8px">
   <span fxFlex></span>
