@@ -25,13 +25,12 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: left 1s, right 1s;
-  left: 100%;
+  display: none;
 }
 
 /* Active Image or Current image to display */
 .slides > img.active {
-  left: 0;
+  display: block;
 }
 
 /* Image Slider Next And Previous Buttons */
