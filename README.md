@@ -31,3 +31,17 @@ Realize o _commit_ da alteração e aguarde a publicação automática.
 Abre a paǵina em janela anônima para garantir que não esteja acessando com _cache_:
 
 https://lpa-ufsm.github.io/percepcao-de-espacos-publicos/
+
+### Como reduzir tamanho de imagens
+
+As imagens devem ter no máximo 2000x1500.
+
+#### No linux
+
+Para reduzir as imagens em cada pasta:
+
+`for f in ./*.jpg ; do convert "$f" -resize 2000x1500 "${f%.jpg}.jpg" ; done`
+
+Para otimizar as imagens:
+
+`jpegoptim **/*.jp*`
